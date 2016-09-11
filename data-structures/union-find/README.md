@@ -6,7 +6,8 @@
   + [connected] (#connectednode_a-nodeb)
   + [count] (#count)
 + [Implementations](#implementations)
-  + [Quick-Find](#quick-Find)
+  + [Quick-Find](#quick-find)
+  + [Quick-Union](#quick-union)
 
 ### API
 
@@ -34,7 +35,7 @@ Query how many distinct components there are in the data structure
 
 ### Quick-Find
 
-An implementation of the Union-Find data structure that optimizes just the find/connected operations
+A simple implementation of the Union-Find data structure that optimizes just the find/connected operations
 
 #### The underlying data structure:
 ```
@@ -52,4 +53,35 @@ The above has 4 distinct components with members:
 -------------------------------------------
 |      N       |   N   |   1  |     1     |
 -------------------------------------------
+
+@TODO: Add explanation as to why this is optimized for the Find command
+```
+
+### Quick-Union
+
+A simple implementation of the Union-Find data structure that optimizes the union operation
+
+#### The underlying data structure:
+```
+(List Indicies)     0   1   2   3   4   5   6   7 ... N
+(List Values)       0 | 1 | 1 | 1 | 4 | 4 | 5 | 5 ... N
+
+The above has 3 distinct components {0, 1, 4} with members:
+
+[0]      [1]       [4]
+        /   \       |
+      [2]   [3]    [5]
+                  /   \
+                [6]   [7]
+```
+
+#### Cost Model:
+```
+-------------------------------------------
+| Construction | Union | Find | Connected |
+-------------------------------------------
+|      N       |   N   |   N  |   N^2     |
+-------------------------------------------
+
+@TODO: Add explanation as to why this is optimized for the Union command
 ```
