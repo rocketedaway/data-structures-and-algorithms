@@ -1,3 +1,4 @@
-__all__ = ['QuickFind']
+__all__ = ['QuickFind', 'QuickUnion']
 
 from quick_find import QuickFind
+from quick_union import QuickUnion
