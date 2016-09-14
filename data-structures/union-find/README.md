@@ -8,6 +8,7 @@
 + [Implementations](#implementations)
   + [Quick-Find](#quick-find)
   + [Quick-Union](#quick-union)
+  + [Weighted-Quick-Union](#weighted-quick-union)
 
 ### API
 
@@ -84,4 +85,26 @@ The above has 3 distinct components {0, 1, 4} with members:
 -------------------------------------------
 
 @TODO: Add explanation as to why this is optimized for the Union command
+@TODO: Add explanation of the problems with this implementation
+```
+
+### Weighted-Quick-Union
+
+A simple implementation of the Union-Find data structure that further optimizes the union operation
+
+#### The underlying data structure:
+@TODO: Add explanation of the unnderlying data sructure and how it works
+
+#### Cost Model:
+```
+-------------------------------------------
+| Construction | Union | Find | Connected |
+-------------------------------------------
+|      N       | ln(N) |   *  |   ln(N)   |
+-------------------------------------------
+* The Find command is proportional to the height of the two components
+
+
+@TODO: Add explanation as to why this is optimized for the Union command and why its different from the Quick-Union implementation
+@TODO: Add explanation of the problems with this implementation
 ```

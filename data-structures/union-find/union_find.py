@@ -17,8 +17,17 @@ class UnionFind(object):
     def connected(self, node_a, node_b):
         return self.find(node_a) == self.find(node_b)
 
+    def union(self, node_a, node_b):
+        component_a = self.find(node_a)
+        component_b = self.find(node_b)
+
+        if (component_a == component_b):
+            return
+        else:
+            self._do_union(component_a, component_b)
+
     @abstractmethod
-    def union(self, node_a, node_b): pass
+    def _do_union(self, component_a, component_b): pass
 
     @abstractmethod
     def find(self, node_a, node_b): pass
