@@ -36,11 +36,14 @@ Query how many distinct components there are in the data structure
 
 ### Quick-Find
 
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_find.py)
+
 A simple implementation of the Union-Find data structure that optimizes just the find/connected operations
 
-@TODO: Add in depth explanation of how this version of the data structure works
-@TODO: Add explanation as to why this is optimized for the Find command
-@TODO: Add explanation of the problems with this implementation
+@TODO
++ Add in depth explanation of how this version of the data structure works
++ Add explanation as to why this is optimized for the Find command
++ Add explanation of the problems with this implementation
 
 #### The underlying data structure:
 ```
@@ -53,11 +56,14 @@ The above has 4 distinct components with members:
 
 ### Quick-Union
 
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_union.py)
+
 A simple implementation of the Union-Find data structure that optimizes the union operation
 
-@TODO: Add in depth explanation of how this version of the data structure works
-@TODO: Add explanation as to why this is optimized for the Union command
-@TODO: Add explanation of the problems with this implementation
+@TODO
++ Add in depth explanation of how this version of the data structure works
++ Add explanation as to why this is optimized for the Union command
++ Add explanation of the problems with this implementation
 
 #### The underlying data structure:
 ```
@@ -75,10 +81,14 @@ The above has 3 distinct components {0, 1, 4} with members:
 
 ### Weighted-Quick-Union
 
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_union_weighted.py)
+
 A simple implementation of the Union-Find data structure that further optimizes the union operation
 
-@TODO: Add in depth explanation of how this version of the data structure works
-@TODO: Add explanation as to why this is optimized for the Union command and why its different from the Quick-Union implementation
+@TODO
++ Add in depth explanation of how this version of the data structure works
++ Add explanation as to why this is optimized for the Union command and why its different from the Quick-Union implementation
 
 #### The underlying data structure:
-@TODO: Add explanation of the underlying data sructure and how it works
+@TODO
++ Add explanation of the underlying data sructure and how it works
