@@ -1,7 +1,11 @@
 # Data Structures and Algorithms
-A collection of different data structures and algorithms implemented in Python
+A collection of different data structures and algorithms.
+
+*This repositoty is a work in progress*
 
 ## Data Structures
 + [Union-Find (Disjoint-Set)](https://github.com/rocketedaway/data-structures-and-algorithms/tree/master/data-structures/union-find)
 
-*This repositoty is a work in progress*
+## Sources
++ Coursera
+  + [Introduction to algorithms](https://www.coursera.org/learn/introduction-to-algorithms)
