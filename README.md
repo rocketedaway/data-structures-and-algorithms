@@ -8,4 +8,4 @@ A collection of different data structures and algorithms.
 
 ## Sources
 + Coursera
-  + [Introduction to algorithms](https://www.coursera.org/learn/introduction-to-algorithms)
+  + [Introduction to Algorithms Part I](https://www.coursera.org/learn/introduction-to-algorithms)
