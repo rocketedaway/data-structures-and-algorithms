@@ -36,7 +36,7 @@ Query how many distinct components there are in the data structure
 
 ### Quick-Find
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_find.py)
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_find.py)
 
 A simple implementation of the Union-Find data structure that optimizes just the find/connected operations
 
@@ -56,7 +56,7 @@ The above has 4 distinct components with members:
 
 ### Quick-Union
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_union.py)
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_union.py)
 
 A simple implementation of the Union-Find data structure that optimizes the union operation
 
@@ -81,7 +81,7 @@ The above has 3 distinct components {0, 1, 4} with members:
 
 ### Weighted-Quick-Union
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data-structures/union-find/quick_union_weighted.py)
+[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_union_weighted.py)
 
 A simple implementation of the Union-Find data structure that further optimizes the union operation
 
