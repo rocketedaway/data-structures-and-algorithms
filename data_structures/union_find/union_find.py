@@ -1,8 +1,6 @@
 """
 Defines the public API used for the different implementations of the Union-Find data structure
 """
-
-from collections import Counter
 from abc import ABCMeta, abstractmethod
 
 class UnionFind(object):
@@ -12,7 +10,13 @@ class UnionFind(object):
         self._components = [n for n in range(N)]
 
     def count(self):
-        return len(Counter(self._components).keys())
+        component_counter = set()
+
+        for node, component in enumerate(self._components):
+            if (node == component):
+                component_counter.add(component)
+
+        return len(component_counter)
 
     def connected(self, node_a, node_b):
         return self.find(node_a) == self.find(node_b)
