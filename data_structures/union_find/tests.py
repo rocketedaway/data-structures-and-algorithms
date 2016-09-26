@@ -5,7 +5,13 @@ from quick_union import QuickUnion
 from quick_union_weighted import WeightedQuickUnion
 
 N = 12
-INITIAL_COMPONENTS = [range(0, 1), range(1, 3 + 1), range(4, 7 + 1), range(8, N)]
+COMPONENTS = [
+    range(0, 1),
+    range(1, 3 + 1),
+    range(4, 7 + 1),
+    range(8, N)
+]
+NUMBER_OF_COMPONENTS = len(COMPONENTS)
 
 def setup(Implementation):
     """
@@ -41,15 +47,15 @@ def setup(Implementation):
 
 def makeConnectedAssertion(implementation, component_a_nodes, component_b_nodes, makeAssertion):
     """
-    Make a assertion about about connections between components in the specified implementation of UnionFind
+    Make an assertion about about connections between components in the specified implementation of UnionFind
     """
     for component_a_node in component_a_nodes:
         for component_b_node in component_b_nodes:
             makeAssertion(implementation.connected(component_a_node, component_b_node))
 
-class UnionFindAPITestCase(unittest.TestCase):
+class UnionFindTestCase(unittest.TestCase):
     """
-    General API Testing
+    Test each implementation of the UnionFind data structure
     """
     def setUp(self):
         self.implementations = [
@@ -61,31 +67,35 @@ class UnionFindAPITestCase(unittest.TestCase):
     def tearDown(self):
         self.implementations = None
 
-    def test_api_union_connected(self):
+    def test_api_union_find_connected(self):
         """
-        Make sure that nodes that should be connected are connected
+        Ensure that all of a components nodes are connected to each other
+
+        Methods tested:
+            union(), connected(), find()
         Tests:
-          (1) All nodes are connected to themselves (EG: UnionFind.connected(1, 1))
+          (1) All nodes are connected to themselves (EG: connected(1, 1))
           (2) Check that each node in a component is connected to each other node in the component
         """
         for implementation in self.implementations:
-            # Test (1)
             for n in range(N):
                 node = range(n, n + 1)
                 makeConnectedAssertion(implementation, node, node, self.assertTrue)
 
-            # Test (2)
-            for component in INITIAL_COMPONENTS:
+            for component in COMPONENTS:
                 makeConnectedAssertion(implementation, component, component, self.assertTrue)
 
-    def test_api_union_not_connected(self):
+    def test_api_union_find_not_connected(self):
         """
-        Make sure that nodes that should not be connected are not connected
+        Ensure nodes that the nodes of one component are not connected to any other component
+
+        Methods tested:
+            union(), connected(), find()
         Tests:
           (1) Check that each node in a component is not connected any nodes not in the component
         """
         for implementation in self.implementations:
-            components = list(INITIAL_COMPONENTS)
+            components = list(COMPONENTS)
             for index in range(len(components)):
                 component = components.pop(index)
 
@@ -93,6 +103,18 @@ class UnionFindAPITestCase(unittest.TestCase):
                     makeConnectedAssertion(implementation, component, other_component, self.assertFalse)
 
                 components.insert(index, component)
+
+    def test_api_count(self):
+        """
+        Ensure that the correct number of unique components is returned
+
+        Methods tested:
+            count()
+        Tests:
+            (1) Call UnionFind::count() an ensure that the # of components returned is correct
+        """
+        for implementation in self.implementations:
+            self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
 
 if __name__ == '__main__':
     unittest.main()
