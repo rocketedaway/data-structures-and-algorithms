@@ -6,10 +6,10 @@ from quick_union_weighted import WeightedQuickUnion
 
 N = 12
 COMPONENTS = [
-    range(0, 1),
-    range(1, 3 + 1),
-    range(4, 7 + 1),
-    range(8, N)
+    range(0, 1), # {0}
+    range(1, 4), # {1,2,3}
+    range(4, 8), # {4,5,6,7}
+    range(8, N)  # {8,9,10,11}
 ]
 NUMBER_OF_COMPONENTS = len(COMPONENTS)
 
