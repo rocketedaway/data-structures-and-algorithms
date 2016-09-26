@@ -38,17 +38,16 @@ Query how many distinct components there are in the data structure
 
 [Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_find.py)
 
-A simple implementation of the Union-Find data structure that optimizes just the find/connected operations
+A naive implementation of the Union-Find data structure that optimizes just the `find(node)` and `connected(node_a, node_b)` methods.
 
-@TODO
-+ Add in depth explanation of how this version of the data structure works
-+ Add explanation as to why this is optimized for the Find command
-+ Add explanation of the problems with this implementation
+The data is stored in a array (list) where the array (list) indicies are the ids of the nodes and the values at those indicies are the ids of the components that the nodes belong too.
 
-#### The underlying data structure:
+The `find(node)` and `connected(node_a, node_b)` methods are very performant as they only require at most 2 look-ups, giving them a constant running time(O(1)). The `union(node_a, node_b)` command on the other hand needs to iterate over every node which is connected to `node_a` (the whole component) and update them to be in the component of `node_b`. As the amount of nodes grows this method has a maximum running time of O(N), where N is the number of nodes in the data structure. When you take into account that this data structure's initilization has a running time of O(N), it will take upwords of N^2 array (list) accesses to preform N `union(node_a, node_b)` commands.
+
+#### Example:
 ```
-(List Indicies)     0   1   2   3   4   5   6   7 ... N
-(List Values)       0 | 1 | 1 | 1 | 4 | 5 | 5 | 5 ... N
+Indicies      0   1   2   3   4   5   6   7
+Values      [ 0 | 1 | 1 | 1 | 4 | 5 | 5 | 5 ]
 
 The above has 4 distinct components with members:
 0 => { 0 }, 1 => { 1,2,3 }, 4 => { 4 }, 5 => { 5,6,7 }
