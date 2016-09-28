@@ -17,19 +17,9 @@ NUMBER_OF_COMPONENTS = len(COMPONENTS)
 def setup(Implementation):
     """
     Setup an implementation of the Union-Find data-structure for testing
-    Defines the following initial connections:
 
-    Components:
+    Defines the following components:
     {0}, {1, 2, 3}, {4,5,6,7}, {8,9,10,11}
-
-    Component Trees
-    [0]      [1]       [4]       [8]
-            /   \       |         |
-          [2]   [3]    [5]       [9]
-                      /   \       |
-                    [6]   [7]    [10]
-                                  |
-                                 [11]
     """
     implementation = Implementation(N)
 
