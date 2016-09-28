@@ -9,6 +9,7 @@
   + [Quick-Find](#quick-find)
   + [Quick-Union](#quick-union)
   + [Weighted-Quick-Union](#weighted-quick-union)
++ [References](#references)
 
 ### API
 
@@ -36,40 +37,46 @@ Query how many distinct components there are in the data structure
 
 ### Quick-Find
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_find.py)
+[Source File](quick_find.py)
 
-A naive implementation of the Union-Find data structure that optimizes just the `find(node)` and `connected(node_a, node_b)` methods.
+For this implementation, two nodes `A` and `B` are connected if and only if `components[A] == components[B]`. In the below example, if `A = 1` and `B = 3`, then they are connected because `components[A] = 1` and `components[B] = 1`.
 
-The data is stored in a array (list) where the array (list) indicies are the ids of the nodes and the values at those indicies are the ids of the components that the nodes belong too.
+The problem with this implementation is that in the worst case it runs in quadratic time (O(N^2)) and has trouble scaling to large data sets.
 
-The `find(node)` and `connected(node_a, node_b)` methods are very performant as they only require at most 2 look-ups, giving them a constant running time(O(1)). The `union(node_a, node_b)` command on the other hand needs to iterate over every node which is connected to `node_a` (the whole component) and update them to be in the component of `node_b`. As the amount of nodes grows this method has a maximum running time of O(N), where N is the number of nodes in the data structure. When you take into account that this data structure's initilization has a running time of O(N), it will take upwords of N^2 array (list) accesses to preform N `union(node_a, node_b)` commands.
-
-#### Example:
+#### Underlying data structure example
 ```
-Indicies      0   1   2   3   4   5   6   7
-Values      [ 0 | 1 | 1 | 1 | 4 | 5 | 5 | 5 ]
+components   (List):
+------------------
+node_ids      (Indicies)     0   1   2   3   4   5   6   7
+component_ids (Values)     [ 0 | 1 | 1 | 1 | 4 | 5 | 5 | 5 ]
 
-The above has 4 distinct components with members:
+This data defines 4 distinct components with members:
 0 => { 0 }, 1 => { 1,2,3 }, 4 => { 4 }, 5 => { 5,6,7 }
+```
+
+#### Cost Model
+```
+|-------------|-------|------|
+| Constructor | Union | Find |
+|-------------|-------|------|
+| N           | N     | N    |
+|-------------|-------|------|
 ```
 
 ### Quick-Union
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_union.py)
+[Source File](quick_union.py)
 
-A simple implementation of the Union-Find data structure that optimizes the union operation
+The QuickUnion implementation does things a little differently from the QuickFind implementation as it instead uses a tree structure. Given a node `A`, its parent node is the value `components[A]`. If `A == components[A]` then we know that we at the root of the tree. In order to test if two nodes `A` and `B` are connected, just check to see if they have the same root node. To connect node `C` => `D` you just make the `root(C)` be a child of `root(D)`.
 
-@TODO
-+ Add in depth explanation of how this version of the data structure works
-+ Add explanation as to why this is optimized for the Union command
-+ Add explanation of the problems with this implementation
+The problem with this implementation is that it does not create balanced trees and execution times of both the `union` and `find` methods scale with the height of the tree.
 
-#### The underlying data structure:
+#### Underlying data structure example:
 ```
-(List Indicies)     0   1   2   3   4   5   6   7 ... N
-(List Values)       0 | 1 | 1 | 1 | 4 | 4 | 5 | 5 ... N
+Indicies       0   1   2   3   4   5   6   7
+Values       [ 0 | 1 | 1 | 1 | 4 | 4 | 5 | 5 ]
 
-The above has 3 distinct components {0, 1, 4} with members:
+The above has 3 distinct components {0, 1, 4} and defines thes following trees:
 
 [0]      [1]       [4]
         /   \       |
@@ -78,16 +85,33 @@ The above has 3 distinct components {0, 1, 4} with members:
                 [6]   [7]
 ```
 
+#### Cost Model
+```
+|-------------|-------------|-------------|
+| Constructor | Union       | Find        |
+|-------------|-------------|-------------|
+| N           | Tree height | Tree height |
+|-------------|-------------|-------------|
+```
+
 ### Weighted-Quick-Union
 
-[Source File](https://github.com/rocketedaway/data-structures-and-algorithms/blob/master/data_structures/union_find/quick_union_weighted.py)
+[Source File](quick_union_weighted.py)
 
-A simple implementation of the Union-Find data structure that further optimizes the union operation
+Weighted QuickUnion builds on the QuickUnion implementation by balancing the trees that are created. The height of each component tree is recorded and when preforming the `union` operation the shortest tree is always linked to the talest tree. This ensures that the component trees generated by the `union` operations remain balanced and do not grow too tall.
 
-@TODO
-+ Add in depth explanation of how this version of the data structure works
-+ Add explanation as to why this is optimized for the Union command and why its different from the Quick-Union implementation
+#### Underlying data structure example:
+See [Quick-Union](#quick-union)
 
-#### The underlying data structure:
-@TODO
-+ Add explanation of the underlying data sructure and how it works
+#### Cost Model
+```
+|-------------|-------|-------|
+| Constructor | Union | Find  |
+|-------------|-------|-------|
+| N           | lg(N) | lg(N) |
+|-------------|-------|-------|
+```
+
+## References
++ [Coursera: Introduction to Algorithms Part I](https://www.coursera.org/learn/introduction-to-algorithms)
++ [Textbook: Algorithms 4th Edition](http://algs4.cs.princeton.edu/15uf/)
