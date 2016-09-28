@@ -3,6 +3,7 @@ import unittest
 from quick_find import QuickFind
 from quick_union import QuickUnion
 from quick_union_weighted import WeightedQuickUnion
+from quick_union_weighted_pc import WeightedQuickUnionWithPathCompression
 
 N = 12
 COMPONENTS = [
@@ -61,7 +62,8 @@ class UnionFindTestCase(unittest.TestCase):
         self.implementations = [
             setup(QuickFind),
             setup(QuickUnion),
-            setup(WeightedQuickUnion)
+            setup(WeightedQuickUnion),
+            setup(WeightedQuickUnionWithPathCompression)
         ]
 
     def tearDown(self):
