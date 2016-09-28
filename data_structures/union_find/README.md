@@ -47,7 +47,7 @@ The problem with this implementation is that in the worst case it runs in quadra
 #### Underlying data structure example
 ```
 components   (List):
-------------------
+--------------------
 node_ids      (Indicies)     0   1   2   3   4   5   6   7
 component_ids (Values)     [ 0 | 1 | 1 | 1 | 4 | 5 | 5 | 5 ]
 
@@ -74,8 +74,10 @@ The problem with this implementation is that it does not create balanced trees a
 
 #### Underlying data structure example:
 ```
-Indicies       0   1   2   3   4   5   6   7
-Values       [ 0 | 1 | 1 | 1 | 4 | 4 | 5 | 5 ]
+components   (List):
+--------------------
+node_ids      (Indicies)       0   1   2   3   4   5   6   7
+component_ids (Values)       [ 0 | 1 | 1 | 1 | 4 | 4 | 5 | 5 ]
 
 The above has 3 distinct components {0, 1, 4} and defines thes following trees:
 
@@ -103,8 +105,10 @@ Weighted QuickUnion builds on the QuickUnion implementation by balancing the tre
 
 #### Underlying data structure example:
 ```
-Indicies       0   1   2   3   4   5   6   7
-Values       [ 0 | 1 | 1 | 1 | 5 | 5 | 5 | 5 ]
+components   (List):
+--------------------
+node_ids      (Indicies)       0   1   2   3   4   5   6   7
+component_ids (Values)       [ 0 | 1 | 1 | 1 | 5 | 5 | 5 | 5 ]
 
 The above has 3 distinct components {0, 1, 5} and defines thes following trees:
 
