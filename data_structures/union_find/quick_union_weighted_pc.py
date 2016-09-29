@@ -1,7 +1,7 @@
 from quick_union_weighted import WeightedQuickUnion
 
 class WeightedQuickUnionWithPathCompression (WeightedQuickUnion):
-    def find(self, node):
+    def _do_find(self, node):
         component = node
 
         while True:

@@ -6,5 +6,5 @@ class QuickFind(UnionFind):
             if (component == component_a):
                 self._components[node] = component_b
 
-    def find(self, node):
+    def _do_find(self, node):
         return self._components[node]

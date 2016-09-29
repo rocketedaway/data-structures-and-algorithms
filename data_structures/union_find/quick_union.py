@@ -4,7 +4,7 @@ class QuickUnion(UnionFind):
     def _do_union(self, component_a, component_b):
         self._components[component_a] = component_b
 
-    def find(self, node):
+    def _do_find(self, node):
         component = node
 
         while True:

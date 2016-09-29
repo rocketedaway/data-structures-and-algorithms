@@ -1,5 +1,7 @@
 import unittest
 
+from union_find import BoundsError
+
 from quick_find import QuickFind
 from quick_union import QuickUnion
 from quick_union_weighted import WeightedQuickUnion
@@ -59,7 +61,7 @@ class UnionFindTestCase(unittest.TestCase):
     def tearDown(self):
         self.implementations = None
 
-    def test_api_union_find_connected(self):
+    def test_union_find_connected(self):
         """
         Ensure that all of a components nodes are connected to each other
 
@@ -77,7 +79,7 @@ class UnionFindTestCase(unittest.TestCase):
             for component in COMPONENTS:
                 makeConnectedAssertion(implementation, component, component, self.assertTrue)
 
-    def test_api_union_find_not_connected(self):
+    def test_union_find_not_connected(self):
         """
         Ensure nodes that the nodes of one component are not connected to any other component
 
@@ -96,7 +98,7 @@ class UnionFindTestCase(unittest.TestCase):
 
                 components.insert(index, component)
 
-    def test_api_count(self):
+    def test_count(self):
         """
         Ensure that the correct number of unique components is returned
 
@@ -107,6 +109,20 @@ class UnionFindTestCase(unittest.TestCase):
         """
         for implementation in self.implementations:
             self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
+
+    def test_bounds(self):
+        """
+        Ensure that an error is thrown if a passed in node is outside the bounds of the data structure
+
+        Methods tested:
+            union(), connected(), find()
+        Tests:
+            (1) Try to union
+        """
+        for implementation in self.implementations:
+            self.assertRaises(BoundsError, implementation.find, 100)
+            self.assertRaises(BoundsError, implementation.union, 100, 101)
+            self.assertRaises(BoundsError, implementation.connected, 100, 101)
 
 if __name__ == '__main__':
     unittest.main()

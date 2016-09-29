@@ -3,10 +3,29 @@ Defines the public API used for the different implementations of the Union-Find 
 """
 from abc import ABCMeta, abstractmethod
 
+class BoundsError(Exception):
+    def __init__(self, node, N):
+        self.N = N
+        self.node = node
+    def __str__(self):
+        return "The node %d is out of bounds (0 >= node < %d)" % (self.node, self.N)
+
+def validateArguments(function):
+        def wrapper(self, *args):
+            for node in args:
+                nodeIsOutOfBounds = node < 0 or node >= self._numberOfNodes
+                if (nodeIsOutOfBounds):
+                    raise BoundsError(node, self._numberOfNodes)
+
+            return function(self, *args)
+
+        return wrapper
+
 class UnionFind(object):
     __metaclass__ = ABCMeta
 
     def __init__(self, N):
+        self._numberOfNodes = N
         self._components = [n for n in range(N)]
 
     def count(self):
@@ -33,5 +52,9 @@ class UnionFind(object):
     @abstractmethod
     def _do_union(self, component_a, component_b): pass
 
+    @validateArguments
+    def find(self, node):
+        return self._do_find(node)
+
     @abstractmethod
-    def find(self, node_a, node_b): pass
+    def _do_find(self, node): pass
