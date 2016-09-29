@@ -117,12 +117,15 @@ class UnionFindTestCase(unittest.TestCase):
         Methods tested:
             union(), connected(), find()
         Tests:
-            (1) Try to union
+            (1) Call UnionFind::union() with invalid nodes,
+            (2) Call UnionFind::find() with an invalid node
+            (3) Call UnionFind::connected with invalid nodes
         """
+        invalidNodes = [N + 1, N + 2]
         for implementation in self.implementations:
-            self.assertRaises(BoundsError, implementation.find, 100)
-            self.assertRaises(BoundsError, implementation.union, 100, 101)
-            self.assertRaises(BoundsError, implementation.connected, 100, 101)
+            self.assertRaises(BoundsError, implementation.find, invalidNodes[0])
+            self.assertRaises(BoundsError, implementation.union, invalidNodes[0], invalidNodes[1])
+            self.assertRaises(BoundsError, implementation.connected, invalidNodes[0], invalidNodes[1])
 
 if __name__ == '__main__':
     unittest.main()
