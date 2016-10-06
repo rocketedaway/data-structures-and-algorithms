@@ -8,7 +8,7 @@ class BoundsError(Exception):
         self.N = N
         self.node = node
     def __str__(self):
-        return "The node %d is out of bounds (0 >= node < %d)" % (self.node, self.N)
+        return 'The node %d is out of bounds (0 >= node < %d)' % (self.node, self.N)
 
 def validateArguments(function):
         def wrapper(self, *args):

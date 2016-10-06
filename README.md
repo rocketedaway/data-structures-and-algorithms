@@ -4,7 +4,7 @@ A collection of different data structures and algorithms.
 *This repositoty is a work in progress*
 
 ## Data Structures
-+ [Union-Find (Disjoint-Set)](data_structures/union_find/)
++ [Union-Find (Disjoint-Set)](src/data_structures/union_find/)
 
 ## Sources
 + Coursera
