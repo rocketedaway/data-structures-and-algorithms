@@ -6,7 +6,7 @@ A collection of different data structures and algorithms.
 ## Data Structures
 + [Union-Find (Disjoint-Set)](src/data_structures/union_find/)
 
-## Sources
+## References
 + Coursera
   + [Introduction to Algorithms Part I](https://www.coursera.org/learn/introduction-to-algorithms)
 + Skiena's Algorithms Lectures
