@@ -1,6 +1,6 @@
 from ...test.test_case import TestCase
 
-from union_find import BoundsError
+from union_find import UnionFindBoundsException
 from quick_find import QuickFind
 from quick_union import QuickUnion
 from quick_union_weighted import WeightedQuickUnion
@@ -15,13 +15,12 @@ COMPONENTS = [
 ]
 NUMBER_OF_COMPONENTS = len(COMPONENTS)
 
-"""
-Setup an implementation of the Union-Find data-structure for testing
-
-Defines the following components:
-{0}, {1, 2, 3}, {4,5,6,7}, {8,9,10,11}
-"""
 def setup(Implementation):
+    """Setup an implementation of the Union-Find data-structure for testing
+
+    Defines the following components:
+        {0}, {1, 2, 3}, {4,5,6,7}, {8,9,10,11}
+    """
     implementation = Implementation(N)
 
     implementation.union(2, 1)
@@ -37,13 +36,12 @@ def setup(Implementation):
 
     return implementation
 
-""" Make an assertion about about connections between components in the specified implementation of UnionFind"""
 def makeConnectedAssertion(implementation, component_a_nodes, component_b_nodes, makeAssertion):
+    """ Make an assertion about about connections between components in the specified implementation of UnionFind"""
     for component_a_node in component_a_nodes:
         for component_b_node in component_b_nodes:
             makeAssertion(implementation.connected(component_a_node, component_b_node))
 
-"""Test each implementation of the UnionFind data structure"""
 class UnionFindTestCase(TestCase):
     def setUp(self):
         self.implementations = [
@@ -59,30 +57,27 @@ class UnionFindTestCase(TestCase):
         self.implementations = None
         super(UnionFindTestCase, self).tearDown()
 
-    def test_connected(self):
-        """Ensure that all of a components nodes are connected to each other
+    def test_connected_nodes(self):
+        """Ensure that all of a component's nodes are connected to each other
 
         Methods tested:
             union(), connected(), find()
-        Tests:
-            (1) All nodes are connected to themselves (EG: connected(1, 1))
-            (2) Check that each node in a component is connected to each other node in the component
         """
         for implementation in self.implementations:
             for n in range(N):
+                # All nodes are connected to themselves
                 node = range(n, n + 1)
                 makeConnectedAssertion(implementation, node, node, self.assertTrue)
 
             for component in COMPONENTS:
+                # Check that each node in a component is connected to each other node in the component
                 makeConnectedAssertion(implementation, component, component, self.assertTrue)
 
-    def test_not_connected(self):
-        """Ensure the nodes of one component are not connected to any other component
+    def test_not_connected_nodes(self):
+        """Ensure the nodes of one component are not connected to any nodes in any other component
 
         Methods tested:
             union(), connected(), find()
-        Tests:
-            (1) Check that each node in a component is not connected any nodes not in the component
         """
         for implementation in self.implementations:
             components = list(COMPONENTS)
@@ -95,13 +90,7 @@ class UnionFindTestCase(TestCase):
                 components.insert(index, component)
 
     def test_count(self):
-        """Ensure that the correct number of unique components is returned
-
-        Methods tested:
-            count()
-        Tests:
-            (1) Call UnionFind::count() an ensure that the # of components returned is correct
-        """
+        """Ensure that the correct number of unique components is returned"""
         for implementation in self.implementations:
             self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
 
@@ -110,13 +99,14 @@ class UnionFindTestCase(TestCase):
 
         Methods tested:
             union(), connected(), find()
-        Tests:
-            (1) Call UnionFind::union() with invalid nodes,
-            (2) Call UnionFind::find() with an invalid node
-            (3) Call UnionFind::connected with invalid nodes
         """
-        invalidNodes = [N + 1, N + 2]
+        valid_node = 0
+        invalid_nodes = [N + 1, N + 2]
         for implementation in self.implementations:
-            self.assertRaises(BoundsError, implementation.find, invalidNodes[0])
-            self.assertRaises(BoundsError, implementation.union, invalidNodes[0], invalidNodes[1])
-            self.assertRaises(BoundsError, implementation.connected, invalidNodes[0], invalidNodes[1])
+            self.assertRaises(UnionFindBoundsException, implementation.find, invalid_nodes[0])
+
+            self.assertRaises(UnionFindBoundsException, implementation.union, invalid_nodes[0], invalid_nodes[1])
+            self.assertRaises(UnionFindBoundsException, implementation.union, valid_node, invalid_nodes[0])
+
+            self.assertRaises(UnionFindBoundsException, implementation.connected, invalid_nodes[0], invalid_nodes[1])
+            self.assertRaises(UnionFindBoundsException, implementation.connected, valid_node, invalid_nodes[0])

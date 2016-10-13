@@ -18,17 +18,20 @@
 Add connection between node_a and all other nodes in the same component to the component of node_b
   + `node_a (int)` A node in the data strucutre
   + `node_b (int)` Another node in the data strucutre
+  + `throws (UnionFindBoundsException)` Exception is thrown when any argument `a` is `0 > a >= N`
 
 ### find(node)
 Find the component identifier which contains the specified node
   + `node (int)` A node in the data strucutre
   + `returns (int)` A component identifier
+  + `throws (UnionFindBoundsException)` Exception is thrown when any argument `a` is `0 > a >= N`
 
 ### connected(node_a, node_b)
 Check if a connection between node_a and and node_b exists
   + `node_a (int)` A node in the data strucutre
   + `node_b (int)` Another node in the data strucutre
   + `returns (bool)` *True* if a connection exists and *False* otherwise
+  + `throws (UnionFindBoundsException)` Exception is thrown when any argument `a` is `0 > a >= N`
 
 ### count()
 Query how many distinct components there are in the data structure
@@ -60,7 +63,7 @@ This data defines 4 distinct components with members:
 |-------------|-------|------|
 | Constructor | Union | Find |
 |-------------|-------|------|
-| N           | N     | N    |
+| N           | O(N)  | O(N) |
 |-------------|-------|------|
 ```
 
@@ -90,11 +93,11 @@ The above has 3 distinct components {0, 1, 4} and defines thes following trees:
 
 #### Cost Model
 ```
-|-------------|-------------|-------------|
-| Constructor | Union       | Find        |
-|-------------|-------------|-------------|
-| N           | Tree height | Tree height |
-|-------------|-------------|-------------|
+|-------------|----------------|----------------|
+| Constructor | Union          | Find           |
+|-------------|----------------|----------------|
+| N           | O(Tree height) | O(Tree height) |
+|-------------|----------------|----------------|
 ```
 
 ### Weighted-Quick-Union
@@ -119,11 +122,11 @@ The above has 3 distinct components {0, 1, 5} and defines thes following trees:
 
 #### Cost Model
 ```
-|-------------|-------|-------|
-| Constructor | Union | Find  |
-|-------------|-------|-------|
-| N           | lg(N) | lg(N) |
-|-------------|-------|-------|
+|-------------|----------|----------|
+| Constructor | Union    | Find     |
+|-------------|----------|----------|
+| N           | O(lg(N)) | O(lg(N)) |
+|-------------|----------|----------|
 ```
 
 ### Weighted-Quick-Union-With-Path-Compression
