@@ -4,6 +4,8 @@ A collection of different data structures and algorithms.
 *This repositoty is a work in progress*
 
 ## Data Structures
++ [Linked List](src/data_structures/linked_list/)
++ [Stack](src/data_structures/stack/)
 + [Union-Find (Disjoint-Set)](src/data_structures/union_find/)
 
 ## References

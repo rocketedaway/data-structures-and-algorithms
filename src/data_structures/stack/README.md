@@ -11,21 +11,27 @@
 
 ### API
 
-### push(element)
-Insert a new element at the head of the Stack
-  + `element (any)` The element to insert into the Stack
+### push(item)
+Insert a new item at the head of the Stack
+  + `item (any)` The item to insert into the Stack
 
 ### pop()
-Remove the first element in the Stack and return it
+Remove the first item in the Stack and return it
   + `returns (any)` The first item in the Stack
+  + `throws (StackEmptyException)` Exception is thrown when this opperation is performed on an empty Stack
+
+### top()
+Returns the first item in the Stack without removing it
+  + `returns (any)` The first item in the Stack
+  + `throws (StackEmptyException)` Exception is thrown when this opperation is performed on an empty Stack
 
 ### is_empty()
-Query if the Stack has any elements in it
-  + `returns (bool)` *True* if the `Stack::size()` is equal to 0 and *False* otherwise
+Query if the Stack has any items
+  + `returns (bool)` *True* if there are no items in the Stack and *False* otherwise
 
 ### size()
-Query how many elements are in the Stack
-  + `returns (int)` The number of elements in the Stack
+Query how many items are in the Stack
+  + `returns (int)` The number of items in the Stack
 
 ## Implementations
 `@TODO`
