@@ -17,7 +17,7 @@ class NodeTestCase(TestCase):
         self.assertEqual(node_a.payload, 'A')
         self.assertEqual(node_a.next, node_b)
 
-class SinglyLinkedListTestCase(TestCase):
+class LinkedListTestCase(TestCase):
     def setUp(self):
         self.linked_list = SinglyLinkedList()
         super(SinglyLinkedListTestCase, self).setUp()
