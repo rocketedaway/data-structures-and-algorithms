@@ -1,2 +1,4 @@
 class Node(object):
-    pass
+    def __init__(self, payload = None, next = None):
+        super(Node, self).__init__()
+

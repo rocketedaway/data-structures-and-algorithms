@@ -19,12 +19,12 @@ class NodeTestCase(TestCase):
 
 class LinkedListTestCase(TestCase):
     def setUp(self):
-        self.linked_list = SinglyLinkedList()
-        super(SinglyLinkedListTestCase, self).setUp()
+        self.linked_list = LinkedList()
+        super(LinkedListTestCase, self).setUp()
 
     def tearDown(self):
         self.linked_list = None
-        super(SinglyLinkedListTestCase, self).tearDown()
+        super(LinkedListTestCase, self).tearDown()
 
     def test_api_push(self):
         """Ensure that the new node is correctly spliced in at the head of the Linked List and the node is returned"""

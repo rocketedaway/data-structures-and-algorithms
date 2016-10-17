@@ -1,4 +1,4 @@
-from ...test.test_case import TestCase
+from ...test.test_case import TestCase, test_all_implementations
 
 from union_find import UnionFindBoundsException
 from quick_find import QuickFind
@@ -54,47 +54,49 @@ class UnionFindTestCase(TestCase):
         super(UnionFindTestCase, self).setUp()
 
     def tearDown(self):
-        self.implementations = None
+        self.implementations = []
         super(UnionFindTestCase, self).tearDown()
 
-    def test_connected_nodes(self):
+    @test_all_implementations
+    def test_connected_nodes(self, implementation = None):
         """Ensure that all of a component's nodes are connected to each other
 
         Methods tested:
             union(), connected(), find()
         """
-        for implementation in self.implementations:
-            for n in range(N):
-                # All nodes are connected to themselves
-                node = range(n, n + 1)
-                makeConnectedAssertion(implementation, node, node, self.assertTrue)
+        for n in range(N):
+            # All nodes are connected to themselves
+            node = range(n, n + 1)
+            makeConnectedAssertion(implementation, node, node, self.assertTrue)
 
-            for component in COMPONENTS:
-                # Check that each node in a component is connected to each other node in the component
-                makeConnectedAssertion(implementation, component, component, self.assertTrue)
+        for component in COMPONENTS:
+            # Check that each node in a component is connected to each other node in the component
+            makeConnectedAssertion(implementation, component, component, self.assertTrue)
 
-    def test_not_connected_nodes(self):
+    @test_all_implementations
+    def test_not_connected_nodes(self, implementation = None):
         """Ensure the nodes of one component are not connected to any nodes in any other component
 
         Methods tested:
             union(), connected(), find()
         """
-        for implementation in self.implementations:
-            components = list(COMPONENTS)
-            for index in range(len(components)):
-                component = components.pop(index)
+        components = list(COMPONENTS)
 
-                for other_component in components:
-                    makeConnectedAssertion(implementation, component, other_component, self.assertFalse)
+        for index in range(len(components)):
+            component = components.pop(index)
 
-                components.insert(index, component)
+            for other_component in components:
+                makeConnectedAssertion(implementation, component, other_component, self.assertFalse)
 
-    def test_count(self):
+            components.insert(index, component)
+
+    @test_all_implementations
+    def test_count(self, implementation = None):
         """Ensure that the correct number of unique components is returned"""
-        for implementation in self.implementations:
-            self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
+        self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
 
-    def test_bounds(self):
+    @test_all_implementations
+    def test_bounds(self, implementation = None):
         """Ensure that an error is thrown if a passed in node is outside the bounds of the data structure
 
         Methods tested:
@@ -102,11 +104,11 @@ class UnionFindTestCase(TestCase):
         """
         valid_node = 0
         invalid_nodes = [N + 1, N + 2]
-        for implementation in self.implementations:
-            self.assertRaises(UnionFindBoundsException, implementation.find, invalid_nodes[0])
 
-            self.assertRaises(UnionFindBoundsException, implementation.union, invalid_nodes[0], invalid_nodes[1])
-            self.assertRaises(UnionFindBoundsException, implementation.union, valid_node, invalid_nodes[0])
+        self.assertRaises(UnionFindBoundsException, implementation.find, invalid_nodes[0])
 
-            self.assertRaises(UnionFindBoundsException, implementation.connected, invalid_nodes[0], invalid_nodes[1])
-            self.assertRaises(UnionFindBoundsException, implementation.connected, valid_node, invalid_nodes[0])
+        self.assertRaises(UnionFindBoundsException, implementation.union, invalid_nodes[0], invalid_nodes[1])
+        self.assertRaises(UnionFindBoundsException, implementation.union, valid_node, invalid_nodes[0])
+
+        self.assertRaises(UnionFindBoundsException, implementation.connected, invalid_nodes[0], invalid_nodes[1])
+        self.assertRaises(UnionFindBoundsException, implementation.connected, valid_node, invalid_nodes[0])
