@@ -3,6 +3,7 @@
 + [API](#api)
   + [push](#pushelement)
   + [pop](#pop)
+  + [top](#top)
   + [is_empty](#is_empty)
   + [size](#size)
 + [Implementations](#implementations)
@@ -12,8 +13,7 @@
 ### API
 
 ### push(item)
-Insert a new item at the head of the Stack
-  + `item (any)` The item to insert into the Stack
+Insert a new item at the top of the Stack
 
 ### pop()
 Remove the first item in the Stack and return it
@@ -29,8 +29,8 @@ Returns the first item in the Stack without removing it
 Query if the Stack has any items
   + `returns (bool)` *True* if there are no items in the Stack and *False* otherwise
 
-### size()
-Query how many items are in the Stack
+### size
+The number of items that are in the Stack
   + `returns (int)` The number of items in the Stack
 
 ## Implementations
