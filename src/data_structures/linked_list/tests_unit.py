@@ -7,7 +7,7 @@ class NodeTestCase(TestCase):
     def test_constuctor(self):
         """Ensure that the Node class is contructed correctly"""
         node_b = Node('B')
-        node_a = Node('A', node_a)
+        node_a = Node('A', node_b)
 
         # [B] -> None
         self.assertEqual(node_b.payload, 'B')
