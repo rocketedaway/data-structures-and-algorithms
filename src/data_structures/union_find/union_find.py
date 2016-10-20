@@ -25,7 +25,7 @@ class UnionFind(object):
     __metaclass__ = ABCMeta
 
     def __init__(self, N):
-        super(LinkedList, self).__init__()
+        super(UnionFind, self).__init__()
         self._numberOfNodes = N
         self._components = [n for n in range(N)]
 
