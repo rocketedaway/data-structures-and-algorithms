@@ -31,13 +31,13 @@ class LinkedListTestCase(TestCase):
         # Start:  None
         # Finish: [B] -> None
         node_b = self.linked_list.push('B')
-        self.assertEqual(self.head(), node_b.payload)
+        self.assertEqual(self.linked_list.head(), node_b.payload)
         self.assertIsNone(node_b.next)
 
         # Start:  [B] -> None
         # Finish: [A] -> [B] -> None
         node_a = self.linked_list.push('A')
-        self.assertEqual(self.head(), node_a.payload)
+        self.assertEqual(self.linked_list.head(), node_a.payload)
         self.assertEqual(node_a.next, node_b)
         self.assertIsNone(node_a.next.next)
 
@@ -50,19 +50,19 @@ class LinkedListTestCase(TestCase):
         # Start:  [A] -> [B] -> [C] -> None
         # Finish: [B] -> [C] -> None
         self.assertEqual(self.linked_list.pop(), node_a.payload)
-        self.assertEqual(self.head(), node_b.payload)
+        self.assertEqual(self.linked_list.head(), node_b.payload)
         self.assertEqual(node_b.next, node_c)
 
         # Start:  [B] -> [C] -> None
         # Finish: [C] -> None
         self.assertEqual(self.linked_list.pop(), node_b.payload)
-        self.assertEqual(self.head(), node_c.payload)
+        self.assertEqual(self.linked_list.head(), node_c.payload)
         self.assertIsNone(node_c.next)
 
         # Start:  [C] -> None
         # Finish: None
         self.assertEqual(self.linked_list.pop(), node_c.payload)
-        self.assertTrue(self.is_empty())
+        self.assertTrue(self.linked_list.is_empty())
 
     def test_exceptions_pop(self):
         """Ensure that an exception is thrown if the pop() method is performed when the List is empty"""

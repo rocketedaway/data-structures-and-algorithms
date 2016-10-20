@@ -10,7 +10,7 @@ class UnionFindBoundsException(Exception):
     def __str__(self):
         return 'The node %d is out of bounds (0 >= node < %d)' % (self.node, self.N)
 
-def validateArguments(function):
+def raiseExceptionWhenArgumentsOutOfBounds(function):
         def wrapper(self, *args):
             for node in args:
                 nodeIsOutOfBounds = node < 0 or node >= self._numberOfNodes
@@ -25,6 +25,7 @@ class UnionFind(object):
     __metaclass__ = ABCMeta
 
     def __init__(self, N):
+        super(LinkedList, self).__init__()
         self._numberOfNodes = N
         self._components = [n for n in range(N)]
 
@@ -37,11 +38,11 @@ class UnionFind(object):
 
         return len(component_counter)
 
-    @validateArguments
+    @raiseExceptionWhenArgumentsOutOfBounds
     def connected(self, node_a, node_b):
         return self.find(node_a) == self.find(node_b)
 
-    @validateArguments
+    @raiseExceptionWhenArgumentsOutOfBounds
     def union(self, node_a, node_b):
         component_a = self.find(node_a)
         component_b = self.find(node_b)
@@ -54,7 +55,7 @@ class UnionFind(object):
     @abstractmethod
     def _do_union(self, component_a, component_b): pass
 
-    @validateArguments
+    @raiseExceptionWhenArgumentsOutOfBounds
     def find(self, node):
         return self._do_find(node)
 
