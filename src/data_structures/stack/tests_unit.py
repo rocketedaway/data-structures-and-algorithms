@@ -1,82 +1,89 @@
-from ...test.test_case import TestCase
+from ...test.test_case import TestCase, test_all_implementations
 
 from stack import Stack, StackEmptyException
 
 class StackTestCase(TestCase):
     def setUp(self):
-        self.stack = Stack()
+        self.implementations = [ Stack() ]
         super(StackTestCase, self).setUp()
 
     def tearDown(self):
-        self.stack = None
+        self.implementations = []
         super(StackTestCase, self).tearDown()
 
-    def test_api_push(self):
+    @test_all_implementations
+    def test_api_push(self, implementation = None):
         """Ensure that the new item is correctly spliced in at the top of the Stack"""
         # Start:  Empty
         # Finish: B
-        self.stack.push('B')
-        self.assertEqual(self.stack.top(), 'B')
+        implementation.push('B')
+        self.assertEqual(implementation.top(), 'B')
 
         # Start:  B
         # Finish: A, B
-        self.stack.push('A')
-        self.assertEqual(self.stack.top(), 'A')
+        implementation.push('A')
+        self.assertEqual(implementation.top(), 'A')
 
-    def test_api_pop(self):
+    @test_all_implementations
+    def test_api_pop(self, implementation = None):
         """Ensure that the top item is correctly spliced out of the Stack and returned"""
-        self.stack.push('C')
-        self.stack.push('B')
-        self.stack.push('A')
+        implementation.push('C')
+        implementation.push('B')
+        implementation.push('A')
 
         # Start:  A, B, C
         # Finish: B, C
-        self.assertEqual(self.stack.pop(), 'A')
-        self.assertEqual(self.stack.top(), 'B')
+        self.assertEqual(implementation.pop(), 'A')
+        self.assertEqual(implementation.top(), 'B')
 
         # Start:  B, C
         # Finish: C
-        self.assertEqual(self.stack.pop(), 'B')
-        self.assertEqual(self.stack.top(), 'C')
+        self.assertEqual(implementation.pop(), 'B')
+        self.assertEqual(implementation.top(), 'C')
 
         # Start:  C
         # Finish: Empty
-        self.assertEqual(self.stack.pop(), 'C')
-        self.assertTrue(self.stack.is_empty())
+        self.assertEqual(implementation.pop(), 'C')
+        self.assertTrue(implementation.is_empty())
 
-    def test_exceptions_pop(self):
+    @test_all_implementations
+    def test_exceptions_pop(self, implementation = None):
         """Ensure that an exception is thrown if the pop() method is performed when the Stack is empty"""
-        self.assertRaises(StackEmptyException, self.stack.pop)
+        self.assertRaises(StackEmptyException, implementation.pop)
 
-    def test_api_is_empty(self):
+    @test_all_implementations
+    def test_api_is_empty(self, implementation = None):
         """Ensure True is returned only when there are no items in the Stack"""
-        self.assertTrue(self.stack.is_empty())
+        self.assertTrue(implementation.is_empty())
 
-        self.stack.push('A')
-        self.assertFalse(self.stack.is_empty())
+        implementation.push('A')
+        self.assertFalse(implementation.is_empty())
 
-        self.stack.pop()
-        self.assertTrue(self.stack.is_empty())
+        implementation.pop()
+        self.assertTrue(implementation.is_empty())
 
-    def test_api_top(self):
+    @test_all_implementations
+    def test_api_top(self, implementation = None):
         """Ensure that the item at the top of the Stack is returned but not removed"""
-        self.stack.push('A')
-        self.assertEqual(self.stack.top(), 'A')
-        self.assertFalse(self.stack.is_empty())
+        implementation.push('A')
+        self.assertEqual(implementation.top(), 'A')
+        self.assertFalse(implementation.is_empty())
 
-    def test_exceptions_top(self):
+    @test_all_implementations
+    def test_exceptions_top(self, implementation = None):
         """Ensure that an exception is thrown if the top() method is performed when the Stack is empty"""
-        self.assertRaises(StackEmptyException, self.stack.top)
+        self.assertRaises(StackEmptyException, implementation.top)
 
-    def test_api_size(self):
+    @test_all_implementations
+    def test_api_size(self, implementation = None):
         """Ensure that the correct number of items in the Stack is returned"""
-        self.assertEqual(self.stack.size, 0)
+        self.assertEqual(implementation.size, 0)
 
-        self.stack.push('C')
-        self.assertEqual(self.stack.size, 1)
+        implementation.push('C')
+        self.assertEqual(implementation.size, 1)
 
-        self.stack.push('B')
-        self.assertEqual(self.stack.size, 2)
+        implementation.push('B')
+        self.assertEqual(implementation.size, 2)
 
-        self.stack.push('A')
-        self.assertEqual(self.stack.size, 3)
+        implementation.push('A')
+        self.assertEqual(implementation.size, 3)
