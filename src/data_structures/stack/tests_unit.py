@@ -87,3 +87,13 @@ class StackTestCase(TestCase):
 
         implementation.push('A')
         self.assertEqual(implementation.size, 3)
+
+    @test_all_implementations
+    def test_iteration(self, implementation = None):
+        """Ensure that you can iterate over the items of a Stack using the iteration protocol"""
+        items = ['A', 'B', 'C']
+        for item in reversed(items):
+            implementation.push(item)
+
+        for index, item in enumerate(implementation):
+            self.assertEqual(item, items[index])
