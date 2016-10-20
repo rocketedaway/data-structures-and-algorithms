@@ -6,7 +6,7 @@ class LinkedListEmptyException(Exception):
     def __str__(self):
         return '%s() method can not be called on an empty List' % self.method_name
 
-def raiseExceptionWhenListEmpty(function):
+def raiseExceptionWhenListIsEmpty(function):
     def wrapper(self, *args):
         if self.is_empty():
             raise LinkedListEmptyException(function.__name__)
@@ -24,13 +24,13 @@ class LinkedList(object):
         self._head = Node(payload, self._head)
         return self._head
 
-    @raiseExceptionWhenListEmpty
+    @raiseExceptionWhenListIsEmpty
     def pop(self):
         old_head = self._head
         self._head = self._head.next
         return old_head.payload
 
-    @raiseExceptionWhenListEmpty
+    @raiseExceptionWhenListIsEmpty
     def head(self):
         return self._head.payload
 
