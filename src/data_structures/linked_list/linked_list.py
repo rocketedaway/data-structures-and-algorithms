@@ -19,6 +19,19 @@ class LinkedList(object):
     def __init__(self):
         super(LinkedList, self).__init__()
         self._head = None
+        self._iter_head = None
+
+    def __iter__(self):
+        self._iter_head = self._head
+        return self
+
+    def next(self):
+        if self._iter_head == None:
+            raise StopIteration()
+        else:
+            node = self._iter_head
+            self._iter_head = self._iter_head.next
+            return node
 
     def push(self, payload):
         self._head = Node(payload, self._head)

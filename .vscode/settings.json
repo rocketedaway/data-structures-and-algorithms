@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/*.pyc": true
+    },
+    "editor.wrappingColumn": 0
+}

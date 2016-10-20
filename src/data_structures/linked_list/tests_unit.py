@@ -87,3 +87,12 @@ class LinkedListTestCase(TestCase):
     def test_exceptions_head(self):
         """Ensure that an exception is thrown if the head() method is performed when the List is empty"""
         self.assertRaises(LinkedListEmptyException, self.linked_list.head)
+
+    def test_iteration(self):
+        """Ensure that you can iterate over the nodes of a Linked List using the iteration protocol"""
+        payloads = ['A', 'B', 'C']
+        for payload in reversed(payloads):
+            self.linked_list.push(payload)
+
+        for index, node in enumerate(self.linked_list):
+            self.assertEqual(node.payload, payloads[index])
