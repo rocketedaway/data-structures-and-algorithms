@@ -1,5 +1,9 @@
+"""
+Implementation of the Node data structure
+"""
+
 class Node(object):
-    def __init__(self, payload, next = None):
+    def __init__(self, payload, next_node=None):
         super(Node, self).__init__()
-        self.next = next
+        self.next_node = next_node
         self.payload = payload

@@ -1,10 +1,11 @@
-from ...test.test_case import TestCase, test_all_implementations
 
-from stack import Stack, StackEmptyException
+from .stack import StackEmptyException
+from .stack_resizing_array import StackWithResizingArray
+from ...test.test_case import TestCase, test_all_implementations
 
 class StackTestCase(TestCase):
     def setUp(self):
-        self.implementations = [ Stack() ]
+        self.implementations = [StackWithResizingArray()]
         super(StackTestCase, self).setUp()
 
     def tearDown(self):
@@ -12,7 +13,7 @@ class StackTestCase(TestCase):
         super(StackTestCase, self).tearDown()
 
     @test_all_implementations
-    def test_api_push(self, implementation = None):
+    def test_api_push(self, implementation=None):
         """Ensure that the new item is correctly spliced in at the top of the Stack"""
         # Start:  Empty
         # Finish: B
@@ -25,7 +26,7 @@ class StackTestCase(TestCase):
         self.assertEqual(implementation.top(), 'A')
 
     @test_all_implementations
-    def test_api_pop(self, implementation = None):
+    def test_api_pop(self, implementation=None):
         """Ensure that the top item is correctly spliced out of the Stack and returned"""
         implementation.push('C')
         implementation.push('B')
@@ -47,12 +48,12 @@ class StackTestCase(TestCase):
         self.assertTrue(implementation.is_empty())
 
     @test_all_implementations
-    def test_exceptions_pop(self, implementation = None):
+    def test_exceptions_pop(self, implementation=None):
         """Ensure that an exception is thrown if the pop() method is performed when the Stack is empty"""
         self.assertRaises(StackEmptyException, implementation.pop)
 
     @test_all_implementations
-    def test_api_is_empty(self, implementation = None):
+    def test_api_is_empty(self, implementation=None):
         """Ensure True is returned only when there are no items in the Stack"""
         self.assertTrue(implementation.is_empty())
 
@@ -63,19 +64,19 @@ class StackTestCase(TestCase):
         self.assertTrue(implementation.is_empty())
 
     @test_all_implementations
-    def test_api_top(self, implementation = None):
+    def test_api_top(self, implementation=None):
         """Ensure that the item at the top of the Stack is returned but not removed"""
         implementation.push('A')
         self.assertEqual(implementation.top(), 'A')
         self.assertFalse(implementation.is_empty())
 
     @test_all_implementations
-    def test_exceptions_top(self, implementation = None):
+    def test_exceptions_top(self, implementation=None):
         """Ensure that an exception is thrown if the top() method is performed when the Stack is empty"""
         self.assertRaises(StackEmptyException, implementation.top)
 
     @test_all_implementations
-    def test_api_size(self, implementation = None):
+    def test_api_size(self, implementation=None):
         """Ensure that the correct number of items in the Stack is returned"""
         self.assertEqual(implementation.size, 0)
 
@@ -89,9 +90,10 @@ class StackTestCase(TestCase):
         self.assertEqual(implementation.size, 3)
 
     @test_all_implementations
-    def test_iteration(self, implementation = None):
+    def test_iteration(self, implementation=None):
         """Ensure that you can iterate over the items of a Stack using the iteration protocol"""
         items = ['A', 'B', 'C']
+
         for item in reversed(items):
             implementation.push(item)
 

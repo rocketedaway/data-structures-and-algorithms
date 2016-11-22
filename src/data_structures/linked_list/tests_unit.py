@@ -1,7 +1,8 @@
+
 from ...test.test_case import TestCase
 
-from node import Node
-from linked_list import LinkedList, LinkedListEmptyException
+from .node import Node
+from .linked_list import LinkedList, LinkedListEmptyException
 
 class NodeTestCase(TestCase):
     def test_constuctor(self):
@@ -11,11 +12,11 @@ class NodeTestCase(TestCase):
 
         # [B] -> None
         self.assertEqual(node_b.payload, 'B')
-        self.assertEqual(node_b.next, None)
+        self.assertEqual(node_b.next_node, None)
 
         # [A] -> [B]
         self.assertEqual(node_a.payload, 'A')
-        self.assertEqual(node_a.next, node_b)
+        self.assertEqual(node_a.next_node, node_b)
 
 class LinkedListTestCase(TestCase):
     def setUp(self):
@@ -32,14 +33,14 @@ class LinkedListTestCase(TestCase):
         # Finish: [B] -> None
         node_b = self.linked_list.push('B')
         self.assertEqual(self.linked_list.head(), node_b.payload)
-        self.assertIsNone(node_b.next)
+        self.assertIsNone(node_b.next_node)
 
         # Start:  [B] -> None
         # Finish: [A] -> [B] -> None
         node_a = self.linked_list.push('A')
         self.assertEqual(self.linked_list.head(), node_a.payload)
-        self.assertEqual(node_a.next, node_b)
-        self.assertIsNone(node_a.next.next)
+        self.assertEqual(node_a.next_node, node_b)
+        self.assertIsNone(node_a.next_node.next_node)
 
     def test_api_pop(self):
         """Ensure that the head node is correctly spliced out of the Linked List and its payload returned"""
@@ -51,13 +52,13 @@ class LinkedListTestCase(TestCase):
         # Finish: [B] -> [C] -> None
         self.assertEqual(self.linked_list.pop(), node_a.payload)
         self.assertEqual(self.linked_list.head(), node_b.payload)
-        self.assertEqual(node_b.next, node_c)
+        self.assertEqual(node_b.next_node, node_c)
 
         # Start:  [B] -> [C] -> None
         # Finish: [C] -> None
         self.assertEqual(self.linked_list.pop(), node_b.payload)
         self.assertEqual(self.linked_list.head(), node_c.payload)
-        self.assertIsNone(node_c.next)
+        self.assertIsNone(node_c.next_node)
 
         # Start:  [C] -> None
         # Finish: None

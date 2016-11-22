@@ -37,7 +37,7 @@ def setup(Implementation):
     return implementation
 
 def makeConnectedAssertion(implementation, component_a_nodes, component_b_nodes, makeAssertion):
-    """ Make an assertion about about connections between components in the specified implementation of UnionFind"""
+    """Make an assertion about about connections between components in the specified implementation of UnionFind"""
     for component_a_node in component_a_nodes:
         for component_b_node in component_b_nodes:
             makeAssertion(implementation.connected(component_a_node, component_b_node))

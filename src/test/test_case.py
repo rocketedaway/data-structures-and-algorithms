@@ -1,3 +1,4 @@
+
 import time
 import unittest
 
@@ -5,11 +6,13 @@ def test_all_implementations(test):
     def wrapper(self):
         for implementation in self.implementations:
             test(self, implementation)
+    wrapper.__doc__ = test.__doc__
     return wrapper
 
 class TestCase(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestCase, self).__init__(*args, **kwargs)
+        self._stop_time = None
         self.execution_time = 0
         self.implementations = []
 

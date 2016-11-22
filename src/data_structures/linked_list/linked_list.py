@@ -1,10 +1,16 @@
-from node import Node
+"""
+Defines the public API and the implementation of the Linked List data structure
+"""
+from .node import Node
 
 class LinkedListEmptyException(Exception):
     def __init__(self, method_name):
+        super(LinkedListEmptyException, self).__init__(None)
         self.method_name = method_name
     def __str__(self):
         return '%s() method can not be called on an empty List' % self.method_name
+
+# pylint: disable=C0103
 
 def raiseExceptionWhenListIsEmpty(function):
     def wrapper(self, *args):
@@ -14,6 +20,8 @@ def raiseExceptionWhenListIsEmpty(function):
             return function(self, *args)
 
     return wrapper
+
+# pylint: enable=C0103
 
 class LinkedList(object):
     def __init__(self):
@@ -26,11 +34,11 @@ class LinkedList(object):
         return self
 
     def next(self):
-        if self._iter_head == None:
+        if self._iter_head is None:
             raise StopIteration()
         else:
             node = self._iter_head
-            self._iter_head = self._iter_head.next
+            self._iter_head = self._iter_head.next_node
             return node
 
     def push(self, payload):
@@ -40,7 +48,7 @@ class LinkedList(object):
     @raiseExceptionWhenListIsEmpty
     def pop(self):
         old_head = self._head
-        self._head = self._head.next
+        self._head = self._head.next_node
         return old_head.payload
 
     @raiseExceptionWhenListIsEmpty
@@ -48,4 +56,4 @@ class LinkedList(object):
         return self._head.payload
 
     def is_empty(self):
-        return self._head == None
+        return self._head is None
