@@ -48,9 +48,6 @@ class Stack(object):
 
     @raise_exception_when_stack_is_empty
     def pop(self):
-        if self._size <= 0:
-            raise RuntimeError(message='Stack size can not be negative')
-
         item = self._do_pop()
         self._size -= 1
         return item
