@@ -1,16 +1,16 @@
 
 from .stack import Stack
 
-class StackWithResizingArray(Stack):
+class StackWithResizingList(Stack):
     def __init__(self):
         """
-        Using a pre-initilized list to store the items in the stack in order to illistrate the resizing functionality
+        Using a pre-initilized list to store the items in the stack in order to illistrate the resizing logic
         """
-        super(StackWithResizingArray, self).__init__()
+        super(StackWithResizingList, self).__init__()
         self._items = [None]
 
     def __iter__(self):
-        return iter(reversed(filter(None, self._items)))
+        return iter(reversed(filter(None, self._items[:self.size])))
 
     def _do_push(self, item):
         self._resize_if_nessisary()
@@ -31,13 +31,13 @@ class StackWithResizingArray(Stack):
         max_items = len(self._items)
 
         if self.size == max_items:
-            factor = .5
+            resize_factor = .5
         elif self.size == (max_items / 4):
-            factor = 2
+            resize_factor = 2
         else:
             return
 
-        new_items = [None] * int(len(self._items) * factor)
+        new_items = [None] * int(max_items * resize_factor)
 
         for index in range(self.size):
             new_items[index] = self._items[index]

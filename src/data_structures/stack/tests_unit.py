@@ -1,12 +1,12 @@
 
 from .stack import StackEmptyException
 from .stack_linked_list import StackWithLinkedList
-from .stack_resizing_array import StackWithResizingArray
+from .stack_resizing_list import StackWithResizingList
 from ...test.test_case import TestCase, test_all_implementations
 
 class StackTestCase(TestCase):
     def setUp(self):
-        self.implementations = [StackWithResizingArray(), StackWithLinkedList()]
+        self.implementations = [StackWithResizingList(), StackWithLinkedList()]
         super(StackTestCase, self).setUp()
 
     def tearDown(self):

@@ -1,7 +1,7 @@
 # Stack
 
 + [API](#api)
-  + [push](#pushelement)
+  + [push](#pushitem)
   + [pop](#pop)
   + [top](#top)
   + [is_empty](#is_empty)
