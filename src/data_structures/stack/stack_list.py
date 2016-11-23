@@ -1,12 +1,12 @@
 
 from .stack import Stack
 
-class StackWithResizingList(Stack):
+class StackWithList(Stack):
     def __init__(self):
         """
         Using a pre-initilized list to store the items in the stack in order to illistrate the resizing logic
         """
-        super(StackWithResizingList, self).__init__()
+        super(StackWithList, self).__init__()
         self._items = [None]
 
     def __iter__(self):
