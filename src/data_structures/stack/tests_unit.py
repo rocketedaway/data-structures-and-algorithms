@@ -15,7 +15,7 @@ class StackTestCase(TestCase):
 
     @test_all_implementations
     def test_api_push(self, implementation=None):
-        """Ensure that the new item is correctly spliced in at the top of the Stack"""
+        """Ensure that the new item is correctly inserted at the top of the Stack"""
         # Start:  Empty
         # Finish: B
         implementation.push('B')
@@ -81,22 +81,29 @@ class StackTestCase(TestCase):
         """Ensure that the correct number of items in the Stack is returned"""
         self.assertEqual(implementation.size, 0)
 
-        implementation.push('C')
+        implementation.push('B')
         self.assertEqual(implementation.size, 1)
 
-        implementation.push('B')
+        implementation.push('A')
         self.assertEqual(implementation.size, 2)
 
-        implementation.push('A')
-        self.assertEqual(implementation.size, 3)
+        implementation.pop()
+        self.assertEqual(implementation.size, 1)
+
+        implementation.pop()
+        self.assertEqual(implementation.size, 0)
 
     @test_all_implementations
     def test_iteration(self, implementation=None):
         """Ensure that you can iterate over the items of a Stack using the iteration protocol"""
         items = ['A', 'B', 'C']
-
         for item in reversed(items):
             implementation.push(item)
 
-        for index, item in enumerate(implementation):
-            self.assertEqual(item, items[index])
+        # pylint: disable=W0612
+
+        for i in range(2):
+            for index, item in enumerate(implementation):
+                self.assertEqual(item, items[index])
+
+        # pylint: enable=W0612
