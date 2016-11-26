@@ -17,12 +17,14 @@ class StackWithList(Stack):
     def _do_push(self, item):
         self._resize_if_nessisary()
         self._items.insert(self.size, item)
+        self._size += 1
 
     def _do_pop(self):
         top_index = self.size - 1
         item = self._items[top_index]
         self._items[top_index] = None
 
+        self._size -= 1
         self._resize_if_nessisary()
         return item
 

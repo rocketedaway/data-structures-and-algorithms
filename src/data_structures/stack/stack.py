@@ -38,7 +38,6 @@ class Stack(object):
 
     def push(self, item):
         self._do_push(item)
-        self._size += 1
 
     @abstractmethod
     def _do_push(self, item):
@@ -46,9 +45,7 @@ class Stack(object):
 
     @raise_exception_when_stack_is_empty
     def pop(self):
-        item = self._do_pop()
-        self._size -= 1
-        return item
+        return self._do_pop()
 
     @abstractmethod
     def _do_pop(self):
@@ -63,4 +60,4 @@ class Stack(object):
         pass
 
     def is_empty(self):
-        return self._size == 0
+        return self.size == 0

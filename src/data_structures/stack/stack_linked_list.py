@@ -14,9 +14,12 @@ class StackWithLinkedList(Stack):
 
     def _do_push(self, item):
         self._items.push(item)
+        self._size += 1
 
     def _do_pop(self):
-        return self._items.pop()
+        item = self._items.pop()
+        self._size -= 1
+        return item
 
     def _get_top(self):
         return self._items.head()
