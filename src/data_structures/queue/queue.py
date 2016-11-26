@@ -40,7 +40,6 @@ class Queue(object):
 
     def enqueue(self, item):
         self._do_enqueue(item)
-        self._size += 1
 
     @abstractmethod
     def _do_enqueue(self, item):
@@ -49,7 +48,6 @@ class Queue(object):
     @raise_exception_when_queue_is_empty
     def dequeue(self):
         item = self._do_dequeue()
-        self._size -= 1
         return item
 
     @abstractmethod

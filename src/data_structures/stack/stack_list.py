@@ -4,7 +4,7 @@ from .stack import Stack
 class StackWithList(Stack):
     def __init__(self):
         """
-        Using a pre-initilized list to store the items in the stack in order to illistrate the resizing logic
+        Using a pre-initilized list to store the items in the Stack in order to illistrate the resizing logic
         """
         super(StackWithList, self).__init__()
         self._items = [None]
