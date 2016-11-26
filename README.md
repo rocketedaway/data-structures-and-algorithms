@@ -5,6 +5,7 @@ A collection of different data structures and algorithms.
 
 ## Data Structures
 + [Linked List](src/data_structures/linked_list/)
++ [Queue](src/data_structures/queue/)
 + [Stack](src/data_structures/stack/)
 + [Union-Find (Disjoint-Set)](src/data_structures/union_find/)
 
