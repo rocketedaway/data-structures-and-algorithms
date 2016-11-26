@@ -1,4 +1,6 @@
-
+"""
+Stack implemented with a resizing list
+"""
 from .stack import Stack
 
 class StackWithList(Stack):

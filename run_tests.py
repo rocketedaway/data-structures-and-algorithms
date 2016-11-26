@@ -3,7 +3,6 @@
 """
 Runs unit tests by default currently. Will eventually be extended to run performance tests as well
 """
-
 import unittest
 from src.test.test_result import TestResult
 

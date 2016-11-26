@@ -11,7 +11,6 @@ class QueueEmptyException(Exception):
         return '%s() method can not be called on an empty Queue' % self.method_name
 
 # pylint: disable=C0103
-
 def raise_exception_when_queue_is_empty(function):
     def wrapper(self, *args):
         if self.is_empty():
@@ -20,7 +19,6 @@ def raise_exception_when_queue_is_empty(function):
             return function(self, *args)
 
     return wrapper
-
 # pylint: enable=C0103
 
 class Queue(object):

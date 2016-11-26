@@ -1,8 +1,9 @@
-
-from ...test.test_case import TestCase
-
+"""
+Node and Linked List unit tests
+"""
 from .node import Node
 from .linked_list import LinkedList, LinkedListEmptyException
+from ...test.test_case import TestCase
 
 class NodeTestCase(TestCase):
     def test_constuctor(self):

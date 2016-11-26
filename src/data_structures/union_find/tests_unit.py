@@ -1,10 +1,12 @@
+"""
+Union-Find unit tests
+"""
+from .union_find import UnionFindBoundsException
+from .quick_find import QuickFind
+from .quick_union import QuickUnion
+from .quick_union_weighted import WeightedQuickUnion
+from .quick_union_weighted_pc import WeightedQuickUnionWithPathCompression
 from ...test.test_case import TestCase, test_all_implementations
-
-from union_find import UnionFindBoundsException
-from quick_find import QuickFind
-from quick_union import QuickUnion
-from quick_union_weighted import WeightedQuickUnion
-from quick_union_weighted_pc import WeightedQuickUnionWithPathCompression
 
 N = 12
 COMPONENTS = [
@@ -15,6 +17,7 @@ COMPONENTS = [
 ]
 NUMBER_OF_COMPONENTS = len(COMPONENTS)
 
+#pylint: disable=C0103
 def setup(Implementation):
     """Setup an implementation of the Union-Find data-structure for testing
 
@@ -41,6 +44,7 @@ def makeConnectedAssertion(implementation, component_a_nodes, component_b_nodes,
     for component_a_node in component_a_nodes:
         for component_b_node in component_b_nodes:
             makeAssertion(implementation.connected(component_a_node, component_b_node))
+#pylint: enable=C0103
 
 class UnionFindTestCase(TestCase):
     def setUp(self):
@@ -58,15 +62,15 @@ class UnionFindTestCase(TestCase):
         super(UnionFindTestCase, self).tearDown()
 
     @test_all_implementations
-    def test_connected_nodes(self, implementation = None):
+    def test_connected_nodes(self, implementation=None):
         """Ensure that all of a component's nodes are connected to each other
 
         Methods tested:
             union(), connected(), find()
         """
-        for n in range(N):
+        for node_id in range(N):
             # All nodes are connected to themselves
-            node = range(n, n + 1)
+            node = range(node_id, node_id + 1)
             makeConnectedAssertion(implementation, node, node, self.assertTrue)
 
         for component in COMPONENTS:
@@ -74,7 +78,7 @@ class UnionFindTestCase(TestCase):
             makeConnectedAssertion(implementation, component, component, self.assertTrue)
 
     @test_all_implementations
-    def test_not_connected_nodes(self, implementation = None):
+    def test_not_connected_nodes(self, implementation=None):
         """Ensure the nodes of one component are not connected to any nodes in any other component
 
         Methods tested:
@@ -91,12 +95,12 @@ class UnionFindTestCase(TestCase):
             components.insert(index, component)
 
     @test_all_implementations
-    def test_count(self, implementation = None):
+    def test_count(self, implementation=None):
         """Ensure that the correct number of unique components is returned"""
         self.assertEqual(implementation.count(), NUMBER_OF_COMPONENTS)
 
     @test_all_implementations
-    def test_bounds(self, implementation = None):
+    def test_bounds(self, implementation=None):
         """Ensure that an error is thrown if a passed in node is outside the bounds of the data structure
 
         Methods tested:

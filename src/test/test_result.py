@@ -1,3 +1,6 @@
+"""
+Extended unittest.TestResult to be used by the project
+"""
 import sys
 import unittest
 import traceback
@@ -9,12 +12,16 @@ HEADER_COLOUR_C = '\033[95m' # Purple
 PASSED_COLOUR_C = '\033[92m' # Green
 FAILED_COLOUR_C = '\033[91m' # Red
 
+# pylint: disable=C0103
+# pylint: disable=W0212
 def updateExecutionTime(function):
     def wrapper(self, test, *args, **kwargs):
         self._tests[test.id()]['execution_time'] = test.execution_time
         function(self, test, *args, **kwargs)
 
     return wrapper
+# pylint: enable=C0103
+# pylint: enable=W0212
 
 class TestResult(unittest.TestResult):
     def __init__(self, *args, **kwargs):

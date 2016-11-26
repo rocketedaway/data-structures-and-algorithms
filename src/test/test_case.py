@@ -1,4 +1,6 @@
-
+"""
+Extended unittest.TestCase to be used by the project
+"""
 import time
 import unittest
 
@@ -6,7 +8,9 @@ def test_all_implementations(test):
     def wrapper(self):
         for implementation in self.implementations:
             test(self, implementation)
+
     wrapper.__doc__ = test.__doc__
+
     return wrapper
 
 class TestCase(unittest.TestCase):

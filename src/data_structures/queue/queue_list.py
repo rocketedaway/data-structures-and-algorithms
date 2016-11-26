@@ -1,4 +1,6 @@
-
+"""
+Queue implemented with a resizing list
+"""
 from .queue import Queue
 
 class QueueWithListIterator(object):

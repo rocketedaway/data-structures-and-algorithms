@@ -1,4 +1,7 @@
-from union_find import UnionFind
+"""
+Quick-Union implementation of Union-Find data structure
+"""
+from .union_find import UnionFind
 
 class QuickUnion(UnionFind):
     def _do_union(self, component_a, component_b):
@@ -10,7 +13,7 @@ class QuickUnion(UnionFind):
         while True:
             parent_node = self._components[component]
 
-            if (component != parent_node):
+            if component != parent_node:
                 component = parent_node
             else:
                 break

@@ -1,4 +1,6 @@
-
+"""
+Stack implemented with a Linked List
+"""
 from .stack import Stack
 from ..linked_list.linked_list import LinkedList
 

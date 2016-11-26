@@ -1,4 +1,6 @@
-
+"""
+Stack unit tests
+"""
 from .stack import StackEmptyException
 from .stack_linked_list import StackWithLinkedList
 from .stack_list import StackWithList
@@ -101,9 +103,7 @@ class StackTestCase(TestCase):
             implementation.push(item)
 
         # pylint: disable=W0612
-
         for i in range(2):
             for index, item in enumerate(implementation):
                 self.assertEqual(item, items[index])
-
         # pylint: enable=W0612

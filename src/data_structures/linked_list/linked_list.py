@@ -11,7 +11,6 @@ class LinkedListEmptyException(Exception):
         return '%s() method can not be called on an empty List' % self.method_name
 
 # pylint: disable=C0103
-
 def raiseExceptionWhenListIsEmpty(function):
     def wrapper(self, *args):
         if self.is_empty():
@@ -20,7 +19,6 @@ def raiseExceptionWhenListIsEmpty(function):
             return function(self, *args)
 
     return wrapper
-
 # pylint: enable=C0103
 
 class LinkedList(object):

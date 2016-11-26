@@ -1,4 +1,6 @@
-
+"""
+Queue unit tests
+"""
 from .queue import QueueEmptyException
 from .queue_list import QueueWithList
 from ...test.test_case import TestCase, test_all_implementations
@@ -101,9 +103,7 @@ class QueueTestCase(TestCase):
             implementation.enqueue(item)
 
         # pylint: disable=W0612
-
         for i in range(2):
             for index, item in enumerate(implementation):
                 self.assertEqual(item, items[index])
-
         # pylint: enable=W0612
