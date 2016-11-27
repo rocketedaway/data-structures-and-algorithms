@@ -47,9 +47,9 @@ Return the payload of the tail node
 
 [Source File](linked_list.py)
 
-This implementation's nodes only hold a link to the next node in the list. Nodes are inserted and removed from head of the list. This implementation is a FIFO data structure and provides constant time `push` and `pop` methods.
+This implementation's nodes only hold a link to the next node in the list. Nodes can be inserted into either the head or the tail of the list and can only be removed from head of the list. This implementation can be either a FIFO or a LIFO data structure depending on were nodes are inserted and provides constant time `push`, `push_tail` and `pop` methods.
 
-The problem with this implementations is that there is no random access and to find a node you need to iterate over at most `N` nodes were `N` is the number of nodes in the list.
+The problem with this implementation is that there is no random access and to find a node you need to iterate over at most `N` nodes were `N` is the number of nodes in the list.
 
 #### Node class definition
 ```
