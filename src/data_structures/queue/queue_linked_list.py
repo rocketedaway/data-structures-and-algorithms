@@ -7,8 +7,6 @@ from ..linked_list.linked_list import LinkedList
 class QueueWithLinkedList(Queue):
     def __init__(self):
         super(QueueWithLinkedList, self).__init__()
-        self._head = None
-        self._tail = None
         self._items = LinkedList()
 
     def __iter__(self):
