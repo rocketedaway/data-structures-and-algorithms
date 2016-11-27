@@ -48,13 +48,13 @@ class LinkedListTestCase(TestCase):
         # Start:  None
         # Finish: [A] -> None
         node_a = self.linked_list.push_tail('A')
-        self.assertEqual(self.linked_list.tail(), node_a.payload)
+        self.assertEqual(self.linked_list.head(), node_a.payload)
         self.assertIsNone(node_a.next_node)
 
         # Start:  [A] -> None
         # Finish: [A] -> [B] -> None
         node_b = self.linked_list.push_tail('B')
-        self.assertEqual(self.linked_list.tail(), node_b.payload)
+        self.assertEqual(self.linked_list.head(), node_a.payload)
         self.assertEqual(node_a.next_node, node_b)
         self.assertIsNone(node_b.next_node)
 
@@ -104,19 +104,6 @@ class LinkedListTestCase(TestCase):
     def test_exceptions_head(self):
         """Ensure that an exception is thrown if the head() method is performed when the List is empty"""
         self.assertRaises(LinkedListEmptyException, self.linked_list.head)
-
-    def test_api_tail(self):
-        """Ensure that the payload of the tail node payload is returned and node is not removed"""
-        node_a = self.linked_list.push('A')
-        self.assertEqual(self.linked_list.tail(), node_a.payload)
-        self.assertFalse(self.linked_list.is_empty())
-
-        node_b = self.linked_list.push_tail('B')
-        self.assertEqual(self.linked_list.tail(), node_b.payload)
-
-    def test_exceptions_tail(self):
-        """Ensure that an exception is thrown if the tail() method is performed when the List is empty"""
-        self.assertRaises(LinkedListEmptyException, self.linked_list.tail)
 
     def test_iteration(self):
         """Ensure that you can iterate over the nodes of a Linked List using the iteration protocol"""

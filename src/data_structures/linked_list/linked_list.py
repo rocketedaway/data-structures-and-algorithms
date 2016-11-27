@@ -69,9 +69,5 @@ class LinkedList(object):
     def head(self):
         return self._head.payload
 
-    @raiseExceptionWhenListIsEmpty
-    def tail(self):
-        return self._tail.payload
-
     def is_empty(self):
         return self._head is None

@@ -6,7 +6,6 @@
   + [pop](#pop)
   + [is_empty](#is_empty)
   + [head](#head)
-  + [tail](#tail)
 + [Implementations](#implementations)
   + [Singly Linked List](#singly-linked-list)
 
@@ -34,11 +33,6 @@ Query if the Linked List has any nodes in it
 ### head()
 Return the payload of the head node
   + `returns (any)` The payload of the head node in the Linked List
-  + `throws (LinkedListEmptyException)` Exception is thrown when this opperation is performed on an empty list
-
-### tail()
-Return the payload of the tail node
-  + `returns (any)` The payload of the tail node in the Linked List
   + `throws (LinkedListEmptyException)` Exception is thrown when this opperation is performed on an empty list
 
 ## Implementations
