@@ -5,9 +5,6 @@ from .queue import Queue
 
 class QueueWithListIterator(object):
     def __init__(self, items, front_index, back_index):
-        """
-        Using a pre-initilized List to store the items in the Queue in order to illistrate the resizing logic
-        """
         super(QueueWithListIterator, self).__init__()
 
         self._items = items
@@ -27,6 +24,9 @@ class QueueWithListIterator(object):
 
 class QueueWithList(Queue):
     def __init__(self):
+        """
+        Using a pre-initilized List to store the items in the Queue in order to illistrate the resizing logic
+        """
         super(QueueWithList, self).__init__()
         self._front_index = 0
         self._back_index = 0
