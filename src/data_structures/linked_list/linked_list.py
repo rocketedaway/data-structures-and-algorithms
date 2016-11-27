@@ -25,6 +25,7 @@ class LinkedList(object):
     def __init__(self):
         super(LinkedList, self).__init__()
         self._head = None
+        self._tail = None
         self._iter_head = None
 
     def __iter__(self):
@@ -41,7 +42,22 @@ class LinkedList(object):
 
     def push(self, payload):
         self._head = Node(payload, self._head)
+
+        if self._tail is None:
+            self._tail = self._head
+
         return self._head
+
+    def push_tail(self, payload):
+        new_tail = Node(payload)
+
+        if self.is_empty():
+            self._head = new_tail
+        else:
+            self._tail.next_node = new_tail
+
+        self._tail = new_tail
+        return new_tail
 
     @raiseExceptionWhenListIsEmpty
     def pop(self):
@@ -52,6 +68,10 @@ class LinkedList(object):
     @raiseExceptionWhenListIsEmpty
     def head(self):
         return self._head.payload
+
+    @raiseExceptionWhenListIsEmpty
+    def tail(self):
+        return self._tail.payload
 
     def is_empty(self):
         return self._head is None

@@ -2,9 +2,11 @@
 
 + [API](#api)
   + [push](#pushpayload)
+  + [push_tail](#push_tailpayload)
   + [pop](#pop)
   + [is_empty](#is_empty)
   + [head](#head)
+  + [tail](#tail)
 + [Implementations](#implementations)
   + [Singly Linked List](#singly-linked-list)
 
@@ -12,6 +14,11 @@
 
 ### push(payload)
 Insert a new node at the front of the Linked List
+  + `payload (any)` The payload of the node to be inserted into the Linked List
+  + `returns (node)` The node that was just inserted
+
+### push_tail(payload)
+Insert a new node at the tail of the Linked List
   + `payload (any)` The payload of the node to be inserted into the Linked List
   + `returns (node)` The node that was just inserted
 
@@ -26,7 +33,12 @@ Query if the Linked List has any nodes in it
 
 ### head()
 Return the payload of the head node
-  + `returns (any)` The payload of the head node in the Linked List if it exists or *None*
+  + `returns (any)` The payload of the head node in the Linked List
+  + `throws (LinkedListEmptyException)` Exception is thrown when this opperation is performed on an empty list
+
+### tail()
+Return the payload of the tail node
+  + `returns (any)` The payload of the tail node in the Linked List
   + `throws (LinkedListEmptyException)` Exception is thrown when this opperation is performed on an empty list
 
 ## Implementations
@@ -77,10 +89,12 @@ push('Foo')
 
 #### Cost Model
 ```
-|-------|-------|-------|
-| Push  | Pop   | Find  |
-|-------|-------|-------|
-| O(1)  | O(1)  | O(N)  |
-|-------|-------|-------|
+|-----------|-------|-------|
+| Push (*)  | Pop   | Find  |
+|-----------|-------|-------|
+| O(1)      | O(1)  | O(N)  |
+|-----------|-------|-------|
+
+* Refers to both push and push_tail methods
 ```
 
