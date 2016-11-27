@@ -45,8 +45,7 @@ class Queue(object):
 
     @raise_exception_when_queue_is_empty
     def dequeue(self):
-        item = self._do_dequeue()
-        return item
+        return self._do_dequeue()
 
     @abstractmethod
     def _do_dequeue(self):
