@@ -3,11 +3,12 @@ Queue unit tests
 """
 from .queue import QueueEmptyException
 from .queue_list import QueueWithList
+from .queue_linked_list import QueueWithLinkedList
 from ...test.test_case import TestCase, test_all_implementations
 
 class QueueTestCase(TestCase):
     def setUp(self):
-        self.implementations = [QueueWithList()]
+        self.implementations = [QueueWithList(), QueueWithLinkedList()]
         super(QueueTestCase, self).setUp()
 
     def tearDown(self):

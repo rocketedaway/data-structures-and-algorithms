@@ -1,12 +1,12 @@
 """
-Queue implemented with a resizing list
+Queue implemented with a resizing List
 """
 from .queue import Queue
 
 class QueueWithListIterator(object):
     def __init__(self, items, front_index, back_index):
         """
-        Using a pre-initilized list to store the items in the Queue in order to illistrate the resizing logic
+        Using a pre-initilized List to store the items in the Queue in order to illistrate the resizing logic
         """
         super(QueueWithListIterator, self).__init__()
 
