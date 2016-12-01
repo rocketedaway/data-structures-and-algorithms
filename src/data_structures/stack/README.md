@@ -7,8 +7,8 @@
   + [is_empty](#is_empty)
   + [size](#size)
 + [Implementations](#implementations)
-  + [Stack With Linked List](#stackwithlinkedlist)
-  + [Stack With Resizing List](#stackwithresizinglist)
+  + [Stack With Linked List](#stack-with-linked-list)
+  + [Stack With Resizing List](#stack-with-resizing-list)
 + [References](#references)
 
 ### API
